@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI計算機</title>
+</head>
+<body>
+    <h1>BMI計算機</h1>
+    <form action="">
+        <label for="username">姓名:</label>
+        <input type="text" name="name" id="username" placeholder="請輸入姓名">
+        <br>
+        <label for="age">年齡:</label>
+        <input type="number" name="age" id="age" placeholder="18">
+        <br>
+        <label for="height">身高:</label>
+        <input type="number" name="height" id="height" value="160" step="0.5">
+        <br>
+        <label for="weight">體重:</label>
+        <input type="number" name="weight" id="weight" value="50" step="0.5">
+        
+        <p>
+        <input type="radio" name="sex" id="male"> 男
+        <input type="radio" name="sex" id="female"> 女
+        </p>
+
+        <p>
+        <label for="country">居住縣市</label>
+        <select name="country" id="country">
+            <option value="台北">台北市</option>
+            <option value="新北">新北市</option>
+        </select>
+        </p>
+        
+        <p>
+            <button type="submit">計算</button>
+        </p>
+
+    </form>
+</body>
+</html>
