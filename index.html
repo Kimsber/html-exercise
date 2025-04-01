@@ -7,22 +7,86 @@
 <!--影響整個風格設計-->
     <style>
         h2{
-            color: rgb(255, 177, 221);
-            background-color: rgb(108, 0, 22);
+            color: rgb(241, 241, 241);
+            background-color: rgb(80, 0, 145);
             font-size: 1.4rem;
             display: inline-block;
             width: 500px;
-        }   
+            margin: 2px;
+            padding: 7px;
+            border: 3px solid rgb(186, 96, 255);
+            border-radius: 5px;
+        } 
         h3{
+            font-size: 1.15rem;
+            display: inline-block;
+            width: 500px;
+            margin-bottom: 1px;
+        }
+
+        .title{
             color: rgb(180, 210, 255);
             background-color: rgb(27, 0, 95);
             font-size: 1rem;
+            margin: 2px 1px 1px 3px;
+            padding: 1px;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 3px;
         }
+
+        .maintitle{
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 48, 179);
+            font-size: 1.8rem;
+            margin: 2px 1px 1px 3px;
+            padding: 10px;
+            border: 3px solid rgb(0, 34, 144);
+            border-radius: 6px;
+        }
+
+        #table-bmi{
+            background-color: rgb(215, 215, 215);
+            width: 98%;
+            height: 75%;
+            margin: 2px;
+            border: 3px solid rgb(0, 0, 0);
+            border-collapse: collapse;
+            margin: auto;
+            text-align: center;
+        }
+
+        thead{
+            background-color: rgb(171, 200, 254);
+            color: rgb(0, 0, 0);
+            margin: auto;
+            text-align: center;
+        }
+
+        tbody{
+            background-color: rgb(135, 167, 255);
+            color: rgb(0, 0, 0);
+            margin: auto;
+            text-align: center;
+        }
+
+        #picture{
+            font-size: 1.5rem;
+        }
+
+        img{
+            margin: 3px;
+            padding: 3px;
+            background-color: rgb(13, 0, 134);
+            border: 3px solid rgb(255, 255, 255);
+            border-radius: 5px;
+        }
+
         body{
             background-color: rgb(211, 221, 255);
             color: rgb(0, 0, 0);
             font-family: "微軟正黑體", "Microsoft JhengHei", sans-serif;
             line-height: 1.6;
+            text-align: center;
         }
     </style>
     
@@ -34,7 +98,7 @@
     <img width="100%" src="img/banner.jpg">
 </a>
 
-    <h1 style="color: rgb(255, 177, 221); background-color: rgb(108, 0, 22);">我愛健身網站</h1>
+    <div class="maintitle">我愛健身網站</div>
     <hr>
     <h2>何謂健身?</h2>
     <h4>健身，英文稱為workout，健身這兩個字拆開來的意思就是健康身體，通過各種運動方式或方法來增強力量、增加肌肉量、柔韌性、耐力，以及提高協調和控制身體各部分的能力來使我們的身體更強健。</h4>
@@ -45,7 +109,7 @@
 
     <h3>健身的10個好處</h3>
         <hr>
-        <ol type="1">
+        <ol type="1" style="text-align: left;">
         <li>增加基礎代謝率</li>
         <li>預防疾病和提高免疫力</li>
         <li>改善心情</li>
@@ -59,13 +123,13 @@
         </ol>
 
     <hr>
-    <h3>推薦文章</h3>
+    <div class="title">推薦文章</div>
     <li><a target="_blank" href="https://www.peeta.tw/workout/workout-beginner/">健身新手該怎麼開始訓練？</a></li>
     <li><a target="_blank" href="https://www.peeta.tw/nutrition/diet-menu/">無痛減肥菜單，營養師5招幫您改變生活</a></li>
     
     <hr>
     <h3>一天所需卡路里</h3>
-    <table border="3">
+    <table id="table-bmi" border="3">
         <thead>
             <tr>
                 <th>每天活動量</th>
@@ -95,24 +159,27 @@
             </tr>
         </tbody>
     </table>
-    <br>
-    <a href="bmi.html">
-    <b>BMI計算:</b>
-    </a>
-    &nbsp;一位民眾身高160公分，體重65公斤，BMI25.4kg/m2(=65÷1.6÷1.6)，體重屬於「過重」。
-    <br>
-    <b>計算所需熱量:</b>
-    &nbsp;假設輕量工作，每天攝取熱量應在1300至1625大卡之間(=20~25大卡*65公斤)。
+
+    <div style="text-align: left; margin: 4px;">
+        <a class="title" href="bmi.html">
+        <b>BMI計算:</b>
+        </a>
+        &nbsp;一位民眾身高160公分，體重65公斤，BMI25.4kg/m2(=65÷1.6÷1.6)，體重屬於「過重」。
+        <br>
+        <b class="title">計算所需熱量:</b>
+        &nbsp;假設輕量工作，每天攝取熱量應在1300至1625大卡之間(=20~25大卡*65公斤)。
+    </div>
+
     <hr>
-    <h3>健身圖片</h3>
-    <img width="32.7%" src="img/pic-1.jpg">
-    <img width="32.7%" src="img/pic-2.jpg">
-    <img width="32.7%" src="img/pic-3.jpg">
+    <div id="picture">健身圖片</div>
+    <img width="30%" src="img/pic-1.jpg">
+    <img width="30%" src="img/pic-2.jpg">
+    <img width="30%" src="img/pic-3.jpg">
     <hr>
-    <h3>健身影片</h3>
+    <div class="title">健身影片</div>
     <!-- <video controls src="video/13323004_720_1280_60fps.mp4"></video> -->
-    <iframe width="700" height="420" src="https://www.youtube.com/embed/XlPTyPS6SMo" title="『蔡昌憲來減脂ep03』兩個月爆減10%體脂｜減脂過程的辛酸史" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <iframe width="700" height="420" src="https://www.youtube.com/embed/i_r3wyJhQHY" title="『欸你這週要幹嘛來減脂 ep01』超爆累減脂比賽開跑" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="49%" src="https://www.youtube.com/embed/XlPTyPS6SMo" title="『蔡昌憲來減脂ep03』兩個月爆減10%體脂｜減脂過程的辛酸史" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="49%" src="https://www.youtube.com/embed/i_r3wyJhQHY" title="『欸你這週要幹嘛來減脂 ep01』超爆累減脂比賽開跑" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     <form action=""></form>
 </body>
