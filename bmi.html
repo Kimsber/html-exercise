@@ -4,7 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI計算機</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        #table-bmi{
+            background-color: rgb(215, 215, 215);
+            width: 98%;
+            height: 75%;
+            margin: 2px;
+            border: 3px solid rgb(0, 0, 0);
+            border-collapse: collapse;
+            margin: auto;
+            text-align: center;
+        }
+
+        thead{
+            background-color: rgb(171, 200, 254);
+            color: rgb(0, 0, 0);
+            margin: auto;
+            text-align: center;
+        }
+
+        tbody{
+            background-color: rgb(135, 167, 255);
+            color: rgb(0, 0, 0);
+            margin: auto;
+            text-align: center;
+        }
+
+        #picture{
+            font-size: 1.5rem;
+        }
+
+        img{
+            margin: 3px;
+            padding: 3px;
+            background-color: rgb(13, 0, 134);
+            border: 3px solid rgb(255, 255, 255);
+            border-radius: 5px;
+        }
+
+        form{
+            background-color: rgb(241, 240, 255);
+            width: 50%;
+            margin: auto;
+            padding: 2%;
+            border-radius: 7px;
+            box-shadow: 10px 8px 8px rgb(40, 40, 40);
+        }
+
+        input{
+            margin: 1% 2%;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        label{
+            margin: 1% 0%;
+            font-size: 24px;
+        }
+
+        .demo{
+            margin: 1% auto;
+            padding: 0 3%;
+            font-size: 24px;
+        }
+
+        option{
+            font-size: 24px;
+        }
+
+        button:hover{
+            background-color: rgb(67, 67, 150);
+            -webkit-text-fill-color: aliceblue;
+        }
+
+    </style>
+
 </head>
+
 <body>
     <h1>BMI計算機</h1>
     <form action="">
@@ -20,22 +99,19 @@
         <label for="weight">體重:</label>
         <input type="number" name="weight" id="weight" value="50" step="0.5">
         
-        <p>
-        <input type="radio" name="sex" id="male"> 男
-        <input type="radio" name="sex" id="female"> 女
-        </p>
-
-        <p>
-        <label for="country">居住縣市</label>
-        <select name="country" id="country">
-            <option value="台北">台北市</option>
-            <option value="新北">新北市</option>
-        </select>
-        </p>
-        
-        <p>
-            <button type="submit">計算</button>
-        </p>
+        <div class="demo">
+            <input type="radio" name="sex" id="male"> 男
+            <input type="radio" name="sex" id="female"> 女
+            
+            <label for="country">居住縣市</label>
+            <select name="country" id="country" style="font-size: 24px;">
+                <option value="台北">台北市</option>
+                <option value="新北">新北市</option>
+            </select>
+            
+        </div>
+       
+        <button type="submit"; style="font-size: 24px;">計算</button>
 
     </form>
     <a href="index.html">回首頁</a>
