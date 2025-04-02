@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-
-        #table-bmi{
+        #table-bmi {
             background-color: rgb(215, 215, 215);
             width: 98%;
             height: 75%;
@@ -19,25 +19,25 @@
             text-align: center;
         }
 
-        thead{
+        thead {
             background-color: rgb(171, 200, 254);
             color: rgb(0, 0, 0);
             margin: auto;
             text-align: center;
         }
 
-        tbody{
+        tbody {
             background-color: rgb(135, 167, 255);
             color: rgb(0, 0, 0);
             margin: auto;
             text-align: center;
         }
 
-        #picture{
+        #picture {
             font-size: 1.5rem;
         }
 
-        img{
+        img {
             margin: 3px;
             padding: 3px;
             background-color: rgb(13, 0, 134);
@@ -45,7 +45,7 @@
             border-radius: 5px;
         }
 
-        form{
+        form {
             background-color: rgb(241, 240, 255);
             width: 50%;
             margin: auto;
@@ -54,56 +54,64 @@
             box-shadow: 10px 8px 8px rgb(40, 40, 40);
         }
 
-        input{
+        input {
             margin: 1% 2%;
             font-size: 24px;
             text-align: center;
         }
 
-        label{
+        label {
             margin: 1% 0%;
             font-size: 24px;
         }
 
-        .demo{
+        .demo {
             margin: 1% auto;
             padding: 0 3%;
             font-size: 24px;
         }
 
-        option{
+        option {
             font-size: 24px;
         }
 
-        button:hover{
+        button:hover {
             background-color: rgb(67, 67, 150);
             -webkit-text-fill-color: aliceblue;
         }
 
         @media screen and (max-width: 1600px) {
-            body{
+            body {
                 font-size: 1.25rem;
             }
-            form{
+
+            form {
                 width: 84%;
             }
-            input, label, button{
+
+            input,
+            label,
+            button {
                 font-size: 1.25rem;
             }
         }
-        @media screen and (max-width: 1024px) {
-        body{
-            font-size: 1.12rem;
-        }
-        form{
-            width: 80%;
-        }
-        input, label, button{
-            font-size: 1.12rem;
-        }
-            
-        }
 
+        @media screen and (max-width: 1024px) {
+            body {
+                font-size: 1.12rem;
+            }
+
+            form {
+                width: 80%;
+            }
+
+            input,
+            label,
+            button {
+                font-size: 1.12rem;
+            }
+
+        }
     </style>
 
 </head>
@@ -122,24 +130,27 @@
         <br>
         <label for="weight">體重:</label>
         <input type="number" name="weight" id="weight" value="50" step="0.5">
-        
+
         <div class="demo">
             <input type="radio" name="sex" id="male"> 男
             <input type="radio" name="sex" id="female"> 女
-            
+
             <label for="country">居住縣市</label>
             <select name="country" id="country" style="font-size: 24px;">
                 <option value="台北">台北市</option>
                 <option value="新北">新北市</option>
             </select>
-            
+
         </div>
-       
-        <button type="submit"; style="font-size: 24px;">計算</button>
+
+        <button type="submit" ; style="font-size: 24px;">計算</button>
 
     </form>
 
-    <a href="index.html" style="margin: 8%;">回首頁</a>
+    <div style="margin: 3%;">
+        <a href="index.html" style="margin: 12%;">回首頁</a>
+    </div>
 
 </body>
+
 </html>
