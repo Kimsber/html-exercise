@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-
-        #table-bmi{
+        #table-bmi {
             background-color: rgb(215, 215, 215);
             width: 98%;
             height: 75%;
@@ -19,25 +19,25 @@
             text-align: center;
         }
 
-        thead{
+        thead {
             background-color: rgb(171, 200, 254);
             color: rgb(0, 0, 0);
             margin: auto;
             text-align: center;
         }
 
-        tbody{
+        tbody {
             background-color: rgb(135, 167, 255);
             color: rgb(0, 0, 0);
             margin: auto;
             text-align: center;
         }
 
-        #picture{
+        #picture {
             font-size: 1.5rem;
         }
 
-        img{
+        img {
             margin: 3px;
             padding: 3px;
             background-color: rgb(13, 0, 134);
@@ -45,7 +45,7 @@
             border-radius: 5px;
         }
 
-        form{
+        form {
             background-color: rgb(241, 240, 255);
             width: 50%;
             margin: auto;
@@ -54,32 +54,31 @@
             box-shadow: 10px 8px 8px rgb(40, 40, 40);
         }
 
-        input{
+        input {
             margin: 1% 2%;
             font-size: 24px;
             text-align: center;
         }
 
-        label{
+        label {
             margin: 1% 0%;
             font-size: 24px;
         }
 
-        .demo{
+        .demo {
             margin: 1% auto;
             padding: 0 3%;
             font-size: 24px;
         }
 
-        option{
+        option {
             font-size: 24px;
         }
 
-        button:hover{
+        button:hover {
             background-color: rgb(67, 67, 150);
             -webkit-text-fill-color: aliceblue;
         }
-
     </style>
 
 </head>
@@ -98,23 +97,89 @@
         <br>
         <label for="weight">體重:</label>
         <input type="number" name="weight" id="weight" value="50" step="0.5">
-        
+
         <div class="demo">
             <input type="radio" name="sex" id="male"> 男
             <input type="radio" name="sex" id="female"> 女
-            
+
             <label for="country">居住縣市</label>
             <select name="country" id="country" style="font-size: 24px;">
                 <option value="台北">台北市</option>
                 <option value="新北">新北市</option>
             </select>
-            
+
         </div>
-       
-        <button type="submit"; style="font-size: 24px;">計算</button>
+
+        <button type="submit" ; style="font-size: 24px;">計算</button>
 
     </form>
     <a href="index.html">回首頁</a>
 
 </body>
+
+<script>
+    let x = 10;
+    let y = 20;
+    let z = x + y;
+
+    // 判斷式
+    if (x > 10) {
+
+    } else if (y > 20) {
+
+    } else {
+        console.log(x, y);
+    }
+
+    // and or not
+    x = "10";
+    y = 10;
+
+    //型態跟值都要相同
+    console.log(x === y);
+
+    // and ==> && or ==>||  not==>!
+    if (x >= 10 || y >= 30) {
+        console.log("1");
+    }
+
+    let a = false;
+    if (!a) {
+        console.log(a);
+    }
+
+    let height = prompt("請輸入身高:");
+    let weight = prompt("請輸入體重:");
+    let bmi = getBmi(height, weight);
+
+    alert("BMI:" + bmi);
+
+
+    // 函式宣告
+    function getBmi(height, weight) {
+        const bmi = weight / (height / 100) ** 2;
+        console.log(bmi.toFixed(2));
+
+        return bmi.toFixed(2);
+    }
+
+
+    // console.log(x, y, z);
+    // // const 宣告常數
+    // const pi = 3.1415926;
+    // // prompt輸入
+    // let radius = prompt("請輸入半徑:");
+    // // isNan判斷是否數值
+    // if (isNaN(radius)) {
+    //     alert("請輸入正確數值!");
+    // } else {
+    //     let area = radius * radius * pi;
+    //     const result = "半徑為:" + radius + " 面積為:" + area;
+    //     // 三種輸出
+    //     console.log(result);
+    //     document.write("<h2>" + result + "</h2>");
+    //     alert(result);
+    // }
+</script>
+
 </html>
