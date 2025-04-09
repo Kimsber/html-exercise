@@ -33,10 +33,6 @@
             text-align: center;
         }
 
-        #picture {
-            font-size: 1.5rem;
-        }
-
         img {
             margin: 3px;
             padding: 3px;
@@ -46,6 +42,7 @@
         }
 
         form {
+            position: relative;
             background-color: rgb(241, 240, 255);
             width: 50%;
             margin: auto;
@@ -79,12 +76,52 @@
             background-color: rgb(67, 67, 150);
             -webkit-text-fill-color: aliceblue;
         }
+
+        #result {
+            text-align: center;
+            background-color: rgb(187, 210, 255);
+            width: 60%;
+            height: 30%;
+            margin: 30px auto;
+            padding: 10px;
+            border-radius: 7px;
+        }
+
+        .bmi {
+            font-size: 2rem;
+            font-weight: 150;
+        }
+
+        .comment {
+            font-size: 1.2rem;
+            font-weight: 100;
+        }
+
+        .info {
+            font-size: 2rem;
+            font-weight: 150;
+        }
+
+        a {
+            position: absolute;
+            font-size: 24px;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            background-color: rgb(171, 200, 254);
+            padding: 5px;
+            border-radius: 5px;
+            right: 12px;
+            bottom: 12px;
+        }
     </style>
 
 </head>
 
 <body>
     <h1>BMI計算機</h1>
+    <div class="stat">
+        test
+    </div>
     <form action="">
         <label for="username">姓名:</label>
         <input type="text" name="name" id="username" placeholder="請輸入姓名">
@@ -93,14 +130,14 @@
         <input type="number" name="age" id="age" placeholder="18">
         <br>
         <label for="height">身高:</label>
-        <input type="number" name="height" id="height" value="160" step="0.5">
+        <input type="number" name="height" id="height" step="0.5">
         <br>
         <label for="weight">體重:</label>
-        <input type="number" name="weight" id="weight" value="50" step="0.5">
+        <input type="number" name="weight" id="weight" step="0.5">
 
         <div class="demo">
-            <input type="radio" name="sex" id="male"> 男
-            <input type="radio" name="sex" id="female"> 女
+            <input type="radio" name="sex" id="male" value="男性"> 男
+            <input type="radio" name="sex" id="female" value="女性"> 女
 
             <label for="country">居住縣市</label>
             <select name="country" id="country" style="font-size: 24px;">
@@ -110,76 +147,105 @@
 
         </div>
 
-        <button type="submit" ; style="font-size: 24px;">計算</button>
+        <button type="button" onclick="calc()" style="font-size: 24px;">計算</button>
 
     </form>
+    <div id="info">
+        test
+    </div>
+
+    <div id="result">
+        <span class="bmi">
+
+        </span>
+        <p class="comment">
+
+        </p>
+    </div>
+
     <a href="index.html">回首頁</a>
 
 </body>
 
 <script>
-    let x = 10;
-    let y = 20;
-    let z = x + y;
+    const nameEl = document.querySelector("#username");
+    const ageEl = document.querySelector("#age");
+    const heightEl = document.querySelector("#height");
+    const weightEl = document.querySelector("#weight");
+    const countryEl = document.querySelector("#country");
+    const sexEl = document.querySelector("input[name='sex']:checked");
 
-    // 判斷式
-    if (x > 10) {
-
-    } else if (y > 20) {
-
-    } else {
-        console.log(x, y);
+    //物件宣告:似字典
+    let data = {
+        total: 0,
+        count: 0
     }
 
-    // and or not
-    x = "10";
-    y = 10;
-
-    //型態跟值都要相同
-    console.log(x === y);
-
-    // and ==> && or ==>||  not==>!
-    if (x >= 10 || y >= 30) {
-        console.log("1");
-    }
-
-    let a = false;
-    if (!a) {
-        console.log(a);
-    }
-
-    let height = prompt("請輸入身高:");
-    let weight = prompt("請輸入體重:");
-    let bmi = getBmi(height, weight);
-
-    alert("BMI:" + bmi);
-
+    console.log(nameEl, ageEl, heightEl.value, weightEl.value, countryEl.value, sexEl);
 
     // 函式宣告
     function getBmi(height, weight) {
         const bmi = weight / (height / 100) ** 2;
-        console.log(bmi.toFixed(2));
+        //console.log(bmi.toFixed(2));
 
         return bmi.toFixed(2);
     }
 
+    function calc() {
+        let weight = weightEl.value;
+        let height = heightEl.value;
 
-    // console.log(x, y, z);
-    // // const 宣告常數
-    // const pi = 3.1415926;
-    // // prompt輸入
-    // let radius = prompt("請輸入半徑:");
-    // // isNan判斷是否數值
-    // if (isNaN(radius)) {
-    //     alert("請輸入正確數值!");
-    // } else {
-    //     let area = radius * radius * pi;
-    //     const result = "半徑為:" + radius + " 面積為:" + area;
-    //     // 三種輸出
-    //     console.log(result);
-    //     document.write("<h2>" + result + "</h2>");
-    //     alert(result);
-    // }
+        if (weight <= 0 || height <= 0) {
+            alert("數值無效:>0");
+            return;
+        }
+
+        if (isNaN(weight) || isNaN(height)) {
+            alert("請輸入數值:not numeric");
+            return;
+        }
+
+        document.querySelector("#result").Hidden = false;
+
+        let bmi = getBmi(height, weight);
+        let result = comment(bmi);
+
+        console.log(bmi);
+
+        document.querySelector(".bmi").innerHTML = `<h3>BMI:${bmi}</h3>`;
+        document.querySelector(".comment").innerHTML = `<h3>建議:${comment(bmi)}</h3>`;
+
+        const bmiEl = document.querySelector(".bmi");
+        bmiEl.innerText = bmi;
+        bmiEl.style.color = result[1];
+        document.querySelector(".comment").innerText = result[0];
+
+        data["total"] += Number(bmi);
+        data.count += 1;
+
+        console.log(data);
+        let avg = (data.total / data.count).toFixed(2);
+        document.querySelector("#stat").innerHTML = `平均BMI:${avg}`;
+    }
+
+    function comment(bmi) {
+        let comment, color;
+        if (bmi < 18.5) {
+            comment = "體重過輕，需多攝取均衡營養並養成運動習慣";
+            color = "rgb(85, 249, 255)";
+        } else if (bmi < 24) {
+            comment = "體重健康，繼續保持";
+            color = "green";
+        } else if (bmi < 27) {
+            comment = "體重過重，須注意攝食並多運動";
+            color = "yellow";
+        } else {
+            comment = "肥胖，應諮詢醫生進行健康管理";
+            color = "orange";
+        }
+        return [comment, color];
+    }
+
 </script>
 
 </html>
