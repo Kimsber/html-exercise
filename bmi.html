@@ -8,45 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        #table-bmi {
-            background-color: rgb(215, 215, 215);
-            width: 98%;
-            height: 75%;
-            margin: 2px;
-            border: 3px solid rgb(0, 0, 0);
-            border-collapse: collapse;
-            margin: auto;
-            text-align: center;
-        }
-
-        thead {
-            background-color: rgb(171, 200, 254);
-            color: rgb(0, 0, 0);
-            margin: auto;
-            text-align: center;
-        }
-
-        tbody {
-            background-color: rgb(135, 167, 255);
-            color: rgb(0, 0, 0);
-            margin: auto;
-            text-align: center;
-        }
-
-        img {
-            margin: 3px;
-            padding: 3px;
-            background-color: rgb(13, 0, 134);
-            border: 3px solid rgb(255, 255, 255);
-            border-radius: 5px;
-        }
-
         form {
             position: relative;
-            background-color: rgb(241, 240, 255);
+            background-color: rgb(240, 240, 255);
             width: 50%;
-            margin: auto;
-            padding: 2%;
+            margin: 2.5% auto;
+            padding: 2.5%;
             border-radius: 7px;
             box-shadow: 10px 8px 8px rgb(40, 40, 40);
         }
@@ -80,29 +47,38 @@
         #result {
             text-align: center;
             background-color: rgb(187, 210, 255);
-            width: 60%;
+            width: 88%;
             height: 30%;
             margin: 30px auto;
             padding: 10px;
             border-radius: 7px;
+            border: 1px solid rgba(0, 0, 0, 0.47);
         }
 
         .bmi {
             font-size: 2rem;
-            font-weight: 150;
+            font-weight: 135;
         }
 
         .comment {
             font-size: 1.2rem;
-            font-weight: 100;
+            font-weight: 110;
         }
 
-        .info {
-            font-size: 2rem;
-            font-weight: 150;
+        #info {
+            text-align: center;
+            background-color: rgb(187, 210, 255);
+            width: 88%;
+            height: 20%;
+            margin: 30px auto;
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid rgba(0, 0, 0, 0.47);
+            font-size: 1.5rem;
+            font-weight: 105;
         }
 
-        a {
+        #home {
             position: absolute;
             font-size: 24px;
             text-decoration: none;
@@ -111,7 +87,18 @@
             padding: 5px;
             border-radius: 5px;
             right: 12px;
-            bottom: 12px;
+            top: 12px;
+        }
+
+        #stat {
+            text-align: center;
+            background-color: rgb(187, 210, 255);
+            width: 66%;
+            height: 20%;
+            margin: 30px auto;
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid rgba(0, 0, 0, 0.47);
         }
     </style>
 
@@ -119,15 +106,17 @@
 
 <body>
     <h1>BMI計算機</h1>
-    <div class="stat">
+
+    <div id="stat">
         test
     </div>
+
     <form action="">
         <label for="username">姓名:</label>
         <input type="text" name="name" id="username" placeholder="請輸入姓名">
         <br>
         <label for="age">年齡:</label>
-        <input type="number" name="age" id="age" placeholder="18">
+        <input type="number" name="age" id="age">
         <br>
         <label for="height">身高:</label>
         <input type="number" name="height" id="height" step="0.5">
@@ -136,7 +125,7 @@
         <input type="number" name="weight" id="weight" step="0.5">
 
         <div class="demo">
-            <input type="radio" name="sex" id="male" value="男性"> 男
+            <input type="radio" name="sex" id="male" checked value="男性"> 男
             <input type="radio" name="sex" id="female" value="女性"> 女
 
             <label for="country">居住縣市</label>
@@ -149,21 +138,22 @@
 
         <button type="button" onclick="calc()" style="font-size: 24px;">計算</button>
 
+        <a id="home" href="index.html">回首頁</a>
+
     </form>
-    <div id="info">
-        test
+
+    <div id="info" hidden>
+
     </div>
 
-    <div id="result">
-        <span class="bmi">
+    <div id="result" hidden>
+        BMI:<span class="bmi">
 
         </span>
         <p class="comment">
 
         </p>
     </div>
-
-    <a href="index.html">回首頁</a>
 
 </body>
 
@@ -173,7 +163,7 @@
     const heightEl = document.querySelector("#height");
     const weightEl = document.querySelector("#weight");
     const countryEl = document.querySelector("#country");
-    const sexEl = document.querySelector("input[name='sex']:checked");
+    //const sexEl = document.querySelector("input[name='sex']:checked");
 
     //物件宣告:似字典
     let data = {
@@ -181,7 +171,7 @@
         count: 0
     }
 
-    console.log(nameEl, ageEl, heightEl.value, weightEl.value, countryEl.value, sexEl);
+    //console.log(nameEl, ageEl, heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
     // 函式宣告
     function getBmi(height, weight) {
@@ -205,34 +195,43 @@
             return;
         }
 
+        const sexEl = document.querySelector("input[name='sex']:checked");
+        let userinfo = `姓名:${nameEl.value} 年齡:${ageEl.value} 性別:${sexEl.value} 居住地:${countryEl.value}`;
+        console.log(userinfo);
+        document.querySelector("#info").innerHTML = `<h3>${userinfo}</h3>`;
+
         document.querySelector("#result").Hidden = false;
 
         let bmi = getBmi(height, weight);
-        let result = comment(bmi);
+        let result = getComment(bmi);
 
-        console.log(bmi);
+        console.log(bmi, result[0], result[1]);
 
-        document.querySelector(".bmi").innerHTML = `<h3>BMI:${bmi}</h3>`;
-        document.querySelector(".comment").innerHTML = `<h3>建議:${comment(bmi)}</h3>`;
+        //document.querySelector("#result").innerHTML = `<h3>BMI:${getComment(bmi)}<br>${comment}</h3>`;
 
         const bmiEl = document.querySelector(".bmi");
         bmiEl.innerText = bmi;
         bmiEl.style.color = result[1];
         document.querySelector(".comment").innerText = result[0];
 
+        document.querySelector("#info").hidden = false;
+        document.querySelector("#result").hidden = false;
+
+        //紀錄BMI資料
         data["total"] += Number(bmi);
         data.count += 1;
 
-        console.log(data);
         let avg = (data.total / data.count).toFixed(2);
-        document.querySelector("#stat").innerHTML = `平均BMI:${avg}`;
+        console.log(data, avg);
+        document.querySelector("#stat").innerHTML = `<h3>紀錄人數:${data.count} 平均BMI:${avg}</h3>`;
+
     }
 
-    function comment(bmi) {
+    function getComment(bmi) {
         let comment, color;
         if (bmi < 18.5) {
             comment = "體重過輕，需多攝取均衡營養並養成運動習慣";
-            color = "rgb(85, 249, 255)";
+            color = "rgb(85, 240, 240)";
         } else if (bmi < 24) {
             comment = "體重健康，繼續保持";
             color = "green";
