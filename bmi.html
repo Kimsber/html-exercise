@@ -108,8 +108,10 @@
     <h1>BMI計算機</h1>
 
     <div id="stat">
-        test
+
     </div>
+
+    <button type="button" style="background-color: crimson;" id="deleteStat" style="font-size: 24px;">刪除</button>
 
     <form action="">
         <label for="username">姓名:</label>
@@ -163,7 +165,16 @@
     const heightEl = document.querySelector("#height");
     const weightEl = document.querySelector("#weight");
     const countryEl = document.querySelector("#country");
+    const deleteStatEl = document.querySelector("#deleteStat");
     //const sexEl = document.querySelector("input[name='sex']:checked");
+
+    deleteStatEl.addEventListener("click", function () {
+        localStorage.removeItem("stat");
+        //刷新頁面 
+        //window.location.href = "";
+        //清除區塊資料
+        document.querySelector("#stat").innerHTML = "";
+    });
 
     //物件宣告:似字典
     let data = {
@@ -171,9 +182,18 @@
         count: 0
     }
 
+    //將字串轉成物件
+    stat = JSON.parse(localStorage.getItem("stat"));
+    if (stat) {
+        data = stat;
+        //加入紀錄顯示
+        let avg = (data.total / data.count).toFixed(2);
+        document.querySelector("#stat").innerHTML = `<h3>紀錄人數:${data.count} 平均BMI:${(data.total / data.count).toFixed(2)}</h3>`;
+    }
+
     //console.log(nameEl, ageEl, heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
-    // 函式宣告
+    //函式宣告
     function getBmi(height, weight) {
         const bmi = weight / (height / 100) ** 2;
         //console.log(bmi.toFixed(2));
@@ -218,12 +238,15 @@
         document.querySelector("#result").hidden = false;
 
         //紀錄BMI資料
-        data["total"] += Number(bmi);
+        data.total += Number(bmi);
         data.count += 1;
 
         let avg = (data.total / data.count).toFixed(2);
         console.log(data, avg);
         document.querySelector("#stat").innerHTML = `<h3>紀錄人數:${data.count} 平均BMI:${avg}</h3>`;
+
+        //儲存資料至本地網頁(字串化)
+        localStorage.setItem("stat", JSON.stringify(data));
 
     }
 
