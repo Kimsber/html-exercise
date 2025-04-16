@@ -1,0 +1,103 @@
+<style>
+form {
+    position: relative;
+    background-color: rgb(240, 240, 255);
+    width: 50%;
+    margin: 2.5% auto;
+    padding: 2.5%;
+    border-radius: 7px;
+    box-shadow: 10px 8px 8px rgb(40, 40, 40);
+}
+
+input {
+    margin: 1% 2%;
+    font-size: 24px;
+    text-align: center;
+}
+
+label {
+    margin: 1% 0%;
+    font-size: 24px;
+}
+
+.demo {
+    margin: 1% auto;
+    padding: 0 3%;
+    font-size: 24px;
+}
+
+option {
+    font-size: 24px;
+}
+
+button:hover {
+    background-color: rgb(67, 67, 150);
+    -webkit-text-fill-color: aliceblue;
+}
+
+#result {
+    text-align: center;
+    background-color: rgb(187, 210, 255);
+    width: 88%;
+    height: 30%;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.47);
+}
+
+.bmi {
+    font-size: 2rem;
+    font-weight: 135;
+}
+
+.comment {
+    font-size: 1.2rem;
+    font-weight: 110;
+}
+
+#info {
+    text-align: center;
+    background-color: rgb(187, 210, 255);
+    width: 88%;
+    height: 20%;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.47);
+    font-size: 1.5rem;
+    font-weight: 105;
+}
+
+#home {
+    position: absolute;
+    font-size: 24px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: rgb(171, 200, 254);
+    padding: 5px;
+    border-radius: 5px;
+    right: 12px;
+    top: 12px;
+}
+
+#stat {
+    text-align: center;
+    background-color: rgb(187, 210, 255);
+    width: 66%;
+    height: 20%;
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.47);
+}
+
+#datalist {
+    text-align: center;
+    background-color: rgb(187, 210, 255);
+    margin: 30px auto;
+    padding: 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.47);
+}
+</style>
