@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMI計算機</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bmi.css">
     <script src="js/bmi.js"></script>
 </head>
@@ -89,7 +90,13 @@
     //const sexEl = document.querySelector("input[name='sex']:checked");
 
     deleteStatEl.addEventListener("click", function () {
+
+        if (!confirm("確定要刪除所有紀錄?")) {
+            return;
+        }
+
         localStorage.removeItem("stat");
+        localStorage.removeItem("datas");
         //刷新頁面 
         //window.location.href = "";
         //清除站站存值
