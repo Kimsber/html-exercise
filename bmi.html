@@ -100,6 +100,15 @@
             border-radius: 7px;
             border: 1px solid rgba(0, 0, 0, 0.47);
         }
+
+        #datalist {
+            text-align: center;
+            background-color: rgb(187, 210, 255);
+            margin: 30px auto;
+            padding: 10px;
+            border-radius: 7px;
+            border: 1px solid rgba(0, 0, 0, 0.47);
+        }
     </style>
 
 </head>
@@ -157,6 +166,21 @@
         </p>
     </div>
 
+    <div id="datalist">
+        <table border=1px>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年齡</th>
+                    <th>性別</th>
+                    <th>居住地</th>
+                    <th>身高</th>
+                    <th>體重</th>
+                    <th>BMI</th>
+                </tr>
+            </thead>
+    </div>
+
 </body>
 
 <script>
@@ -172,8 +196,12 @@
         localStorage.removeItem("stat");
         //刷新頁面 
         //window.location.href = "";
+        //清除站站存值
+        data.total = 0;
+        data.count = 0;
         //清除區塊資料
         document.querySelector("#stat").innerHTML = "";
+        document.querySelector("#datalist").innerHTML = "";
     });
 
     //物件宣告:似字典
@@ -182,8 +210,12 @@
         count: 0
     }
 
-    //將字串轉成物件
+    //讀取datas
+    let datas = JSON.parse(localStorage.getItem("datas")) || [];
+
+    //將單筆資料轉成物件
     stat = JSON.parse(localStorage.getItem("stat"));
+
     if (stat) {
         data = stat;
         //加入紀錄顯示
@@ -191,6 +223,9 @@
         document.querySelector("#stat").innerHTML = `<h3>紀錄人數:${data.count} 平均BMI:${(data.total / data.count).toFixed(2)}</h3>`;
     }
 
+    if (datas.length > 0) {
+        renderTable(datas);
+    }
     //console.log(nameEl, ageEl, heightEl.value, weightEl.value, countryEl.value, sexEl.value);
 
     //函式宣告
@@ -201,9 +236,57 @@
         return bmi.toFixed(2);
     }
 
+    function addRow(data) {
+        teturn`
+        <tr>
+            <td>${data.name}</td>
+            <td>${data.age}</td>
+            <td>${data.sex}</td>
+            <td>${data.country}</td>
+            <td>${data.height}</td>
+            <td>${data.weight}</td>
+            <td>${data.bmi}</td>
+        </tr>
+        `;
+    }
+
+    function renderTable(datas) {
+        tdata = "";
+        for (let i = 0; i < datas.length; i++) {
+            let tdata = addRow(datas[i]);
+            console.log(datas[i]);
+            tdata += addRow(datas[i]);
+        }
+
+        let tablehtml = `
+            <table border=1px>
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>年齡</th>
+                        <th>性別</th>
+                        <th>居住地</th>
+                        <th>身高</th>
+                        <th>體重</th>
+                        <th>BMI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                ${tdata}
+                </tbody>
+            </table>
+        `;
+    }
+
     function calc() {
+        const sexEl = document.querySelector("input[name='sex']:checked");
+        let name = nameEl.value;
+        let age = ageEl.value;
+        let sex = sexEl.value;
+        let country = countryEl.value;
         let weight = weightEl.value;
         let height = heightEl.value;
+
 
         if (weight <= 0 || height <= 0) {
             alert("數值無效:>0");
@@ -215,8 +298,7 @@
             return;
         }
 
-        const sexEl = document.querySelector("input[name='sex']:checked");
-        let userinfo = `姓名:${nameEl.value} 年齡:${ageEl.value} 性別:${sexEl.value} 居住地:${countryEl.value}`;
+        let userinfo = `姓名:${name} 年齡:${age} 性別:${sex} 居住地:${country}`;
         console.log(userinfo);
         document.querySelector("#info").innerHTML = `<h3>${userinfo}</h3>`;
 
@@ -248,6 +330,23 @@
         //儲存資料至本地網頁(字串化)
         localStorage.setItem("stat", JSON.stringify(data));
 
+        //儲存單筆資料
+        let person = {
+            name: nameEl.value,
+            age: ageEl.value,
+            sex: sexEl.value,
+            height: height,
+            weight: weight,
+            bmi: bmi
+        }
+
+        //console.log(person);
+        datas.push(person);
+
+        //儲存datas
+        localStorage.setItem("datas", JSON.stringify(datas));
+
+        renderTable(datas);
     }
 
     function getComment(bmi) {
