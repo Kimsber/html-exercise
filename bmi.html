@@ -100,8 +100,8 @@
             return;
         }
 
-        //儲存成JSON格式
-        let jsonData = JSON.stringify(datas);
+        //儲存成JSON格式(換行隔頁輸出)
+        let jsonData = JSON.stringify(datas, null, 2);
 
         //產生2進制物件
         const blob = new Blob([jsonData], { type: "application/json" });
